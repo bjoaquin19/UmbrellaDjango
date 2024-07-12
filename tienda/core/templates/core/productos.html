@@ -1,0 +1,94 @@
+{% extends "core/base.html" %}
+{% load static %}
+{% load custom_filters %}
+
+{% block content %}
+    <h1>Mantenedor de productos</h1>
+
+    <!-- FORMULARIO -->
+    <form method="POST" enctype="multipart/form-data" id="formulario-ad-producto">
+    {% csrf_token %}
+        <div class="container">
+            <div class="justify-content-center">
+                <div class="row justify-content-center">
+                    
+
+                        <div class="col-8 col-xs-12 col-sm-12 col-md-8 mb-3">
+                            {{ form|as_bootstrap_form }}
+                        </div>
+                    
+                        <!-- FOTO -->
+                        <div class="col-4 col-md-4 text-center">
+                            <div class="row">
+                                <!-- AREA DE CUADRO DE IMAGEN: Muestra la Imagen de perfil -->
+                                <div class="col-sm-12">
+                                    <img id="cuadro-imagen" src="{% static 'core/img/SeleccionarIMG.png' %}">
+                                    <!-- AREA DE BOTON DE SELECCIONAR IMAGEN: Reemplaza el botón "Seleccionar archivo" por otro con Bootstrap (VER COMENTARIO "BOTON IMAGEN" en script.js) -->
+                                    <button class="btn btn-primary" onclick="event.preventDefault(); document.getElementById('id_imagen').click();"> Seleccionar imagen </button>  
+                                </div>
+                            </div>
+                        </div>
+                    
+
+                        <!-- BOTONES -->
+                        <div class="row">
+                            <div class="d-flex justify-content-start mb-3">
+                                <button type="submit" class="btn btn-success me-3">Guardar</button>
+                                <button type="reset" class="btn btn-primary me-3">Nuevo</button>
+                                <a type="submit" class="btn btn-primary me-3" href="{% url 'productos' 'eliminar' form.instance.id %}">Eliminar</a>
+                            </div>
+                        </div>
+                    
+                </div>
+            </div>
+        </div>
+    </form>
+
+    <div class="mx-3">
+        <table id="tabla-principal" class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col" class="d-none d-block d-lg-table-cell">ID</th>
+                    <th scope="col">Categoría</th>
+                    <th scope="col">Nombre</th>
+                    <th scope="col" class="d-none d-block d-lg-table-cell">Descripción</th>
+                    <th scope="col" class="d-none d-block d-lg-table-cell">Precio</th>
+                    <th scope="col" class="d-none d-block d-lg-table-cell">%Desc. subscriptor</th>
+                    <th scope="col">Descuento oferta</th>
+                    <th scope="col">Imagen</th>
+                    <th scope="col">Acción</th>
+                </tr>
+            </thead>
+
+            {% for producto in productos %}
+            <tbody>
+                <tr>
+                    <td class="d-none d-block d-lg-table-cell">{{ producto.id }}</td>
+                    <td>{{ producto.categoria }}</td>
+                    <td>{{ producto.nombre }}</td>
+                    <td class="d-none d-block d-lg-table-cell">{{ producto.descripcion }}</td>
+                    <td class="d-none d-block d-lg-table-cell">{{ producto.precio }}</td>
+                    <td class="d-none d-block d-lg-table-cell">{{ producto.subscripcion }}</td>
+                    <td>{{ producto.descuento }}</td>
+                    <td><img width="100px" src="/media/{{producto.imagen}}"></td>
+                    <td>
+                        <div class="btn-group">
+                            <a href="{% url 'productos' 'actualizar' producto.id %}" class="btn btn-primary btn-sm"> Editar </a>
+                            <form method="delete">
+                                <a href="{% url 'productos' 'eliminar' producto.id %}" class="btn btn-danger btn-sm"> Eliminar </a>
+                            </form>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+            {% endfor %}
+        </table>
+    </div>
+    
+{% endblock content %}
+
+{% block script %}
+    <script src="{% static 'core/js/validador.js' %}"></script>
+    <script src="{% static 'core/js/scriptform.js' %}"></script>
+    <script src="{% static  'core/js/productos.js' %}"></script>
+{% endblock script %}

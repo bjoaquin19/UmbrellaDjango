@@ -1,0 +1,11 @@
+{% extends 'core/base.html' %}
+{% block content %}
+
+  <h1>Administrar tienda</h1>
+  <a href="{% url 'usuarios' 'crear' 0 %}">Mantenedor de usuarios</a><br>
+  <a href="{% url 'productos' 'crear' 0 %}">Mantenedor de productos</a><br>
+  <a href="ventas.html">Historial de ventas</a><br>
+  <a href="bodega.html">Mantenedor de bodega</a>
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+
+{% endblock content %}

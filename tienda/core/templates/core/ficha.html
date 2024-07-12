@@ -1,0 +1,35 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block content %}
+    <h1 style="text-align: center;">Ficha</h1>
+
+    <!-- CUERPO DE LA FICHA -->
+    <div class="container-fluid">
+        <div class="row">
+            <div id="div-img-ficha" class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 col-xxl-6">
+                <img src="/media/{{ imagen }}" class="img-ficha" alt="img.{{producto.imagen}}">
+            </div>
+            <div class="col-md-6 col-lg-6 col-xl-6 col-xxl-6">
+                <h2>{{ nombre }}</h2>
+                <h4 class="disponible_text">{{ html_estado|safe }}</h4>
+                <p>{{ html_precio|safe }}</p>
+                <b><p>Descripcion</p></b>
+                <p>{{ descripcion }}
+                </p>
+                <p>{{ html_stock|safe }}</p>
+                
+                <div>
+                    <input type="hidden" id="accion">
+                    <a href="{% url 'comprar_ahora' %}" class="btn btn-primary ancho-160px"> 
+                        Comprar ahora 
+                    </a>
+                    <a href="{% url 'agregar_producto_al_carrito' id %}" class="btn btn-secondary ancho-160px"> 
+                        Agregar al carrito 
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock content %}

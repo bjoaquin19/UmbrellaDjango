@@ -1,0 +1,113 @@
+{% load static %}
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="{% url 'index' %}">UmbrellaCorp</a>
+
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        {% if not user.is_authenticated %}
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="{% url 'registrarme' %}">
+              Registrarme
+            </a>
+          </li>
+        {% endif %}
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="{% url 'nosotros' %}">
+            Nosotros
+          </a>
+        </li>
+
+        {% if not user.is_authenticated %} 
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="{% url 'ingresar' %}"> Ingresar </a>
+            </li>
+        {% endif %}
+
+        {% if user.is_authenticated %} 
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" 
+                  aria-expanded="false" href="{% url 'ingresar' %}">
+                
+                {% if user.is_superuser %}
+                  <span class="text-danger fw-bold">
+                {% elif user.is_staff %}
+                  <span class="text-success fw-bold">
+                {% else %}
+                  <span>
+                {% endif %}
+                  {{ user.first_name }} {{ user.last_name }}
+                  {% if user.perfil.subscrito %}
+                    (premium)
+                  {% endif %}
+                </span>
+
+              </a>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="{% url 'misdatos' %}"> Mis datos </a></li>
+                <li><a class="dropdown-item" href="{% url 'mipassword' %}"> Cambiar mi contraseña </a></li>
+                {% if not user.is_staff and not user.is_superuser %}
+                  <li><a class="dropdown-item" href="{% url 'miscompras' %}"> Mis compras </a></li>
+                {% endif %}
+                <li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-item" href="{% url 'salir' %}"> Salir </a></li>
+              </ul> 
+            </li>
+        {% endif %}
+        {% if mostrar_carrito %}
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="{% url 'carrito' %}">
+                <img src="{% static 'core/img/carrito.png' %}" width="32px">
+                {{ cantidad_productos }}
+              </a>
+            </li>
+        {% endif %}
+
+        {% comment %}
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="{% url 'ropa' %}">
+            Ropa
+          </a>
+        </li>
+        {% endcomment %}
+
+        {% if user.is_authenticated and user.is_staff and user.is_active or user.is_authenticated and user.is_superuser and user.is_active %}
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" 
+                  aria-expanded="false">
+                Admnistrar tienda
+              </a>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="{% url 'productos' 'crear' '0' %}"> Productos </a></li>
+                <li><a class="dropdown-item" href="{% url 'usuarios' 'crear' '0' %}"> Usuarios </a></li>
+                <li><a class="dropdown-item" href="{% url 'admin_bodega' %}"> Bodega </a></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-item" href="{% url 'ventas' %}"> Ventas </a></li>
+                {% if user.is_authenticated and user.is_superuser and user.is_active %}
+                <li><a class="dropdown-item" href="/admin"> Administrador de Django </a></li>
+                {% endif %}
+              </ul>
+            </li>
+          {% endif %}
+      </ul>
+
+      <form method="POST" action="{% url 'index' %}" class="d-flex" role="search">
+        {% csrf_token %}
+        <input id="buscar" name="buscar" class="form-control me-2" type="search" placeholder="Ingresa tu videojuego" aria-label="Search">
+        <button class="btn btn-outline-success" type="submit">Buscar</button>
+      </form>
+    </div>
+  </div>
+</nav>

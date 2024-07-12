@@ -1,0 +1,48 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% load custom_filters %}
+
+{% block content %}
+<h1>Ingresar</h1>
+<form method="POST" id="formulario-ingreso">
+    {% csrf_token %}
+    <div class="container-fluid mt-4">
+        <div class="container mx-auto">
+            <div class="justify-content-center">
+                
+                    <!-- CUENTA Y PASSWORD -->
+                    <div class="row justify-content-center mx-auto col-6">
+                        {{ form|as_bootstrap_form }}
+                    </div>
+            
+                    <div class="row justify-content-center">
+                        <div class="col text-center" id="btnIngreso">
+                            <button type="submit" class="btn btn-primary">Ingresar</button>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col text-center">
+                            <a href="{% url 'registrarme' %}">Regístrate</a><br>
+                            <a href="">¿Olvidaste tu contraseña?</a>
+                            
+                        </div>
+                    </div>
+                
+            </div>
+        </div>
+        <br><br><br><br><br>
+        <div class="row">
+            {% include 'common/combobox_usuarios.html' %}
+        </div>
+    </div>
+</form>
+    <br><br><br><br><br><br><br><br><br><br><br>
+
+{% endblock content %}
+
+{% block script %}
+    <script type="text/javascript" src="{% static 'core/js/validador.js' %}"></script>
+    <script src="{% static 'core/js/scriptform.js' %}"></script>
+    <script src="{% static 'core/js/ingresar.js' %}"></script>
+{% endblock script %}
+    

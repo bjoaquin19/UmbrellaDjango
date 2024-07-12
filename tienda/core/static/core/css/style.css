@@ -1,0 +1,31 @@
+h1 {
+  font-size: x-large;
+  color: blue !important;
+  font-weight: bolder;
+  margin-bottom: 20px;
+  text-align: center;
+  margin-top: 7px;
+}
+
+h2 {
+  text-align: center;
+}
+
+th {
+  vertical-align: top;
+  background-color: lightgray !important;
+}
+
+input, textarea, select {
+  border-color: darkgray !important; /* Cambia "red" al color deseado */
+}
+
+footer{
+  background-color: rgb(192, 190, 190);
+  text-align: center;
+}
+
+/* Descomenta el selector div a continuación si quieres ver la diagramación de tu página */
+/* div {
+  border: 1px solid blue;
+} */
