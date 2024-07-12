@@ -204,7 +204,7 @@ def poblar_bd(test_user_email=''):
         },
         {
             'id': 2,
-            'categoria': Categoria.objects.get(id=3),
+            'categoria': Categoria.objects.get(id=1),
             'nombre': 'Stardew Valley',
             'descripcion': 'Crea y gestiona tu propia granja en un encantador pueblo.',
             'precio': 9990,
@@ -224,7 +224,7 @@ def poblar_bd(test_user_email=''):
         },
         {
             'id': 4,
-            'categoria': Categoria.objects.get(id=2),
+            'categoria': Categoria.objects.get(id=1),
             'nombre': 'Hollow Knight',
             'descripcion': 'Explora un vasto mundo subterráneo lleno de criaturas misteriosas.',
             'precio': 12990,
@@ -286,7 +286,7 @@ def poblar_bd(test_user_email=''):
         {
             'id': 10,
             'categoria': Categoria.objects.get(id=2),
-            'nombre': 'Baldur's Gate 3',
+            'nombre': 'Baldurs Gate 3',
             'descripcion': 'Un RPG basado en turnos ambientado en el universo de Dungeons & Dragons.',
             'precio': 39990,
             'descuento_subscriptor': 10,
@@ -306,9 +306,9 @@ def poblar_bd(test_user_email=''):
         {
             'id': 12,
             'categoria': Categoria.objects.get(id=2),
-            'nombre': 'Star Wars Jedi: Fallen Order',
-            'descripcion': 'Star Wars Jedi: Fallen Order es una emocionante aventura de acción en tercera persona ambientada en el universo de Star Wars. Ponte en la piel de Cal Kestis, un padawan que sobrevivió a la Orden 66 y debe completar su entrenamiento, desarrollar nuevas y poderosas habilidades con la Fuerza y dominar el arte del sable láser mientras te mantienes un paso por delante del Imperio y sus mortíferos Inquisidores.',
-            'precio': 39990,
+            'nombre': 'Fallout 4',
+            'descripcion': 'Sobrevive en un mundo post-apocalíptico con decisiones que afectan tu historia.',
+            'precio': 34990,
             'descuento_subscriptor': 5,
             'descuento_oferta': 15,
             'imagen': 'productos/000012.jpg'
@@ -337,9 +337,9 @@ def poblar_bd(test_user_email=''):
         {
             'id': 15,
             'categoria': Categoria.objects.get(id=3),
-            'nombre': 'Total War: Warhammer III',
-            'descripcion': 'Total War: Warhammer III es un juego de estrategia en tiempo real y por turnos ambientado en el mundo de fantasía de Warhammer. El juego presenta cuatro razas jugables: Kislev, Cathay, Khorne y Nurgle, cada una con sus propias unidades, mecánicas y objetivos de campaña. Los jugadores pueden liderar a sus ejércitos en batallas masivas en tiempo real y gestionar sus imperios en un mapa de campaña por turnos.',
-            'precio': 59990,
+            'nombre': 'The Elder Scrolls V: Skyrim',
+            'descripcion': 'Un vasto mundo abierto lleno de dragones, magia y aventuras épicas.',
+            'precio': 34990,
             'descuento_subscriptor': 5,
             'descuento_oferta': 0,
             'imagen': 'productos/000015.jpg'
@@ -358,7 +358,7 @@ def poblar_bd(test_user_email=''):
         {
             'id': 17,
             'categoria': Categoria.objects.get(id=4),
-            'nombre': 'Assassin's Creed Odyssey',
+            'nombre': 'Assassins Creed Odyssey',
             'descripcion': 'Explora la antigua Grecia como un mercenario en busca de su familia y secretos.',
             'precio': 44990,
             'descuento_subscriptor': 5,
